@@ -16,10 +16,6 @@ end
 %
 % compute weights using the interpolation points
 %
- n = 10
-    xi = linspace(-1,1,n);
-    x = linspace(-1,1,1000);
-    
 for j=1:n
     dif = xi(j) - [xi(1:j-1);xi(j+1:n)];
     w(j) = 1/prod(dif);
@@ -33,18 +29,20 @@ val = zeros(m,1);
 for i = 1: m
     sum=0;
     for j=1:n
-       dif2 = x(i) - [xi(1:j-1);xi(j+1:n)];
-    v(j)=prod (dif2)*w(j);
-    sum =sum +yi(j)*v(j);
+        dif2 = x(i) - [xi(1:j-1);xi(j+1:n)];
+        v(j)=prod (dif2)*w(j);
+        sum =sum +yi(j)*v(j);
     end
-    val (i)=sum;
 end
 
 %% Examples
 if 0
     clear all
     close all
-   
+    n = 10
+    xi = linspace(-1,1,n);
+    x = linspace(-1,1,1000);
+    
     if 0
         % Create Lagrange polynomials
         for j =1:n
@@ -81,3 +79,4 @@ if 0
     ax = gca;
     ax.FontSize = 16;
 end
+
